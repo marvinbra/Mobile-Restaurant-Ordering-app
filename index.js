@@ -43,10 +43,11 @@ function handleOrderClick(orderid){
     })
 }
 
+// noch nicht funktionstüchtig 
 function handleRemoveClick(orderid){
     menuArray.forEach(function(menu){
         if(menu.uuid = orderid){
-            console.log(typeof menuIndex)
+            shoppingCart.remove()
         }
     })
 }
