@@ -11,6 +11,8 @@ document.addEventListener("click", function(e){
         handleOrderClick(e.target.dataset.btn)
     } if(e.target.dataset.removebtn){
         handleRemoveClick(e.target.dataset.removebtn)
+    } if(e.target.dataset.completebtn){
+        handleCompleteClick(e.target.dataset.completebtn)
     }
 })
 
@@ -34,7 +36,7 @@ function handleOrderClick(orderid){
             finishOrder.innerHTML = `
             <p>Total Price: </p>
             <p>${totalPrice}</p>
-            <button>Complete order</button>
+            <button data-completebtn="${menu.uuid}">Complete order</button>
             `
             yourOrder.innerHTML = `
             <p>Your Order</p>
@@ -48,6 +50,15 @@ function handleRemoveClick(orderid){
     menuArray.forEach(function(menu){
         if(menu.uuid = orderid){
             shoppingCart.remove()
+        }
+    })
+}
+
+function handleCompleteClick(orderid){
+    menuArray.forEach(function(menu){
+        if(menu.uuid = orderid){
+            console.log("works")
+            paymentModal.style.display = "flex"
         }
     })
 }
