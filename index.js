@@ -4,7 +4,6 @@ const shoppingCart = document.getElementById("shoppingCart")
 const finishOrder = document.getElementById("finishOrder")
 const yourOrder = document.getElementById("your−order")
 const paymentModal = document.getElementById("payement-modal")
-const completeBtn = document.getElementById("completeBtn")
 const inputName = document.getElementById("input-name")
 const payBtn = document.getElementById("pay-btn")
 const thxMsg = document.getElementById("thanks-msg")
@@ -50,11 +49,11 @@ function handleOrderClick(orderid){
     })
 }
 
-// noch nicht funktionstüchtig 
+// not working
 function handleRemoveClick(orderid){
     menuArray.forEach(function(menu){
         if(menu.uuid = orderid){
-            shoppingCart.remove()
+            shoppingCart.remove([menuIndex])
         }
     })
 }
@@ -68,7 +67,7 @@ function handleCompleteClick(orderid){
     })
 }
 
-payBtn.addEventListener("click", function() {
+payBtn.addEventListener("click", () => {
     console.log("works")
     paymentModal.style.display = "none"
     thxMsg.innerHTML = `
