@@ -27,11 +27,7 @@ function handleOrderClick(orderid){
     menuArray.forEach(function(menu){
         if(menu.uuid === orderid){
             totalPrice += menu.price
-            const uuid = uuidv4()
-            menuIndex.push({
-                ...menu,
-                uuid
-                })
+            menuIndex.push({...menu})
             shoppingCart.innerHTML += `
                 <div class="addToOrder">
                     <div>
