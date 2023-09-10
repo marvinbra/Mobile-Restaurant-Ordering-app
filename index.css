@@ -1,8 +1,36 @@
 body {
     margin: 0;
-    padding: 0;
+} 
+
+.container {
+    margin: 3em auto;;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 5px;
+    position: relative;
+    width: 80%;
+}
+
+.logo {
+    text-align: center;
+    min-height: 20%;
+}
+
+.menu {
+    width: 90%;
+    margin: 2em auto;
+}
+
+.menuCard {
+    justify-content: start;
+    align-items: start;
+}
+
+.item-details {
+    display: flex;
 }
 
 .payement-modal {
     display: none;
 }
+
