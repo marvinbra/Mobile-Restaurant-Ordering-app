@@ -15,6 +15,7 @@ body {
     text-align: center;
     min-height: 20%;
     font-size: 1.5rem;
+    margin-bottom: 3em;
 }
 
 .menu {
@@ -30,7 +31,9 @@ body {
 .item-details {
     display: flex;
     margin: 2em 0;
-    gap: 2em
+    gap: 2em;
+    padding: 2em 0;
+    border-bottom: 2px solid lightgray;
 }
 
 .emoji {
@@ -40,6 +43,7 @@ body {
 
 .ingredients {
     opacity: 0.6;
+    padding: 0.25em 0;
 }
 
 .name,
@@ -60,12 +64,32 @@ body {
     cursor: pointer;
 }
 
-.your−order {
-    text-align: center;
+.buyBtn:hover {
+    background: lightgray;
 }
 
 .finishOrder {
     text-align: center;
+}
+
+.your−order {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.addToOrder {
+    display: flex;
+    font-size: 1.5rem;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+
+.removeBtn {
+    border: none;
+    font-size: 14px;
+    color: lightseagreen;
+    padding: 5px 10px 4px 10px;
+    cursor: pointer;
 }
 
 .payement-modal {
