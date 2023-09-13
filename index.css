@@ -105,6 +105,46 @@ body {
     font-size: 1.2rem;
 }
 
+.payement-modal {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 45%;
+    margin: auto;
+    border-radius: 8px;
+    inset: 0;
+    padding-inline: 1.75em;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+.payement-modal h3 {
+    font-size: 2rem;
+}
+
+.payement-modal input {
+    height: 12%;
+    width: 80%;
+    margin: 0.75em 0;
+    padding-left: 1em;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+.pay-btn {
+    display: block;
+    height: 12%;
+    width: 85%;
+    background: #16db99;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 1.2em;
+    font-size: 1.5rem;
+}
 
 .payement-modal {
     display: none;
