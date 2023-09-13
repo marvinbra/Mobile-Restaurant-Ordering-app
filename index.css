@@ -68,8 +68,8 @@ body {
     background: lightgray;
 }
 
-.finishOrder {
-    text-align: center;
+.spanPrice {
+    font-size: 1.4rem;
 }
 
 .your−order {
@@ -85,12 +85,26 @@ body {
 }
 
 .removeBtn {
+    display: block;
     border: none;
     font-size: 14px;
     color: lightseagreen;
     padding: 5px 10px 4px 10px;
     cursor: pointer;
 }
+
+.completeBtn {
+    width: 90%;
+    display: block;
+    margin: 2.5em auto;
+    padding: 1em;
+    background: #16db99;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+}
+
 
 .payement-modal {
     display: none;
