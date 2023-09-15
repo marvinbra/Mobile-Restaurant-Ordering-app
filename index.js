@@ -1,10 +1,11 @@
-import { menuArray } from "./data";
-import { v4 as uuidv4 } from 'uuid';
+import { menuArray } from "./data"
+import { v4 as uuidv4 } from "uuid"
 
 const shoppingCart = document.getElementById("shoppingCart")
 const finishOrder = document.getElementById("finishOrder")
 const yourOrder = document.getElementById("your−order")
 const paymentModal = document.getElementById("payement-modal")
+const completeBtn = document.getElementById("completeBtn")
 const inputName = document.getElementById("input-name")
 const payBtn = document.getElementById("pay-btn")
 const thxMsg = document.getElementById("thanks-msg")
@@ -22,27 +23,36 @@ document.addEventListener("click", function(e){
 })
 
 function handleOrderClick(orderid){
-   
+    
     menuArray.forEach(function(menu){
         if(menu.uuid === orderid){
+            
             totalPrice += menu.price
-            menuIndex.push({...menu})
+            
+            const uuid = uuidv4()
+            menuIndex.push({
+                ...menu,
+                 uuid
+                 })
+            
             shoppingCart.innerHTML += `
                 <div class="addToOrder">
                     <div>
-                        <div class="orderItem"><span>${menu.name}</span></div>
-                        <button data-removebtn="${uuid}">remove</button>
+                    <div class="orderItem"><span>${menu.name}</span></div>
+                        <button class="removeBtn" data-removebtn="${uuid}">remove</button>
                     </div>
                     <div>
-                        <div>${menu.price}</div>
+                        <div>$${menu.price}</div>
                     </div>
                 </div>
             `
         } if (shoppingCart.innerHTML) {
             finishOrder.innerHTML = `
-                <p>Total Price: </p>
-                <p>${totalPrice}</p>
-                <button  data-completebtn="${menu.uuid}">Complete order</button>
+                <div>
+                    <p class="spanPrice">Total Price: </p>
+                    <p class="spanPrice">$${totalPrice}</p>
+                </div>
+                <button class="completeBtn" data-completebtn="${menu.uuid}">Complete order</button>
             `
             yourOrder.innerHTML = `
                 <p>Your Order</p>
@@ -52,25 +62,45 @@ function handleOrderClick(orderid){
 }
 
 function handleRemoveClick(orderid){
+    
     shoppingCart.innerHTML = ``
+    finishOrder.innerHTML = ``
+    yourOrder.innerHTML = ``
+    
     menuIndex = menuIndex.filter(function(menu){
-        return menu.uuid !== orderid
+        return menu.uuid !== orderid 
     })
-    menuIndex.forEach(menu => {
-        shoppingCart.innerHTML +=`
-                <div class="addToOrder">
-                    <div>
-                        <div class="orderItem"><span>${menu.name}</span></div>
-                        <button data-removebtn="${menu.uuid}">remove</button>
-                    </div>
-                    <div>
-                        <div>${menu.price}</div>
-                    </div>
+    menuIndex.forEach( menu => {
+        
+        totalPrice -= menu.price 
+        
+        shoppingCart.innerHTML += `
+             <div class="addToOrder">
+                <div>
+                    <div class="orderItem"><span>${menu.name}</span></div>
+                    <button class="removeBtn" data-removebtn="${menu.uuid}">remove</button>
                 </div>
+                <div>
+                    <div>$${menu.price}</div>
+                </div>
+             </div>
+        `
+        if (shoppingCart.innerHTML) {
+            finishOrder.innerHTML = `
+                <div>
+                    <p class="spanPrice">Total Price: </p>
+                    <p class="spanPrice">$${totalPrice}</p>
+                </div>
+                <button class="completeBtn" data-completebtn="${menu.uuid}">Complete order</button>
             `
-    })
+            yourOrder.innerHTML = `
+                <p>Your Order</p>
+            `
+        }
+    }) 
     
 }
+
 
 function handleCompleteClick(orderid){
     menuArray.forEach(function(menu){
@@ -91,23 +121,28 @@ payBtn.addEventListener("click", function() {
 })
 
 const menuFeed = menuArray.map(function(menu){
-//  const {name, ingredients, price, emoji, uuid} = menuArray
+//   const {name, ingredients, price, emoji, uuid} = menuArray
     return`
         <div class="menuCard" id="menuCard">
             <div class="item-details">
-                <div class="emoji"> ${menu.emoji} </div>
-            </div>
-            <div class="info">
-                <div class="name"> ${menu.name} </div>
-                <div class="ingredients"> ${menu.ingredients} </div>
-                <div class="price"> ${menu.price} </div>
-            </div>
-            <div>
-                <button id="buyBtn" data-btn="${menu.uuid}">+</button
+            
+                <div>
+                    <div class="emoji"> ${menu.emoji} </div>
+                </div>
+                
+                <div class="info">
+                    <div class="name"> ${menu.name} </div>
+                    <div class="ingredients"> ${menu.ingredients} </div>
+                    <div class="price"> $${menu.price} </div>
+                </div>
+                
+                <div>
+                    <button class="buyBtn" id="buyBtn" data-btn="${menu.uuid}">+</button
+                </div>
             </div>
         </div>
     `
-})
+}).join("")
 
 function render() {
     document.getElementById("menu").innerHTML = menuFeed
