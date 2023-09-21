@@ -10,6 +10,7 @@ const inputName = document.getElementById("input-name")
 const payBtn = document.getElementById("pay-btn")
 const thxMsg = document.getElementById("thanks-msg")
 let menuIndex = []
+let totalPriceArr = []
 let totalPrice = 0
 
 document.addEventListener("click", function(e){
@@ -28,6 +29,7 @@ function handleOrderClick(orderid){
         if(menu.uuid === orderid){
             
             totalPrice += menu.price
+            totalPriceArr.push(menu.price)
             
             const uuid = uuidv4()
             menuIndex.push({
@@ -72,7 +74,9 @@ function handleRemoveClick(orderid){
     })
     menuIndex.forEach( menu => {
         
-        totalPrice -= menu.price 
+        totalPriceArr.reduce((total, num) => total + num, 0) 
+        
+        totalPriceArr -= menu.price
         
         shoppingCart.innerHTML += `
              <div class="addToOrder">
@@ -115,6 +119,7 @@ payBtn.addEventListener("click", function() {
     shoppingCart.textContent = ""
     yourOrder.textContent = ""
     finishOrder.textContent = ""
+    thxMsg.style.display = "block"
     thxMsg.innerHTML = `
     <p>Thanks ${inputName.value}! Your order is on its way.</p>
     `
